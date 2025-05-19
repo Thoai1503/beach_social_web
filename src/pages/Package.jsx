@@ -1,6 +1,10 @@
 import React from "react";
+import { useBeachContext } from "../context/beach_context";
 
 const Package = () => {
+  const { beach_data } = useBeachContext();
+  console.log("Beach:" + beach_data.length);
+
   return (
     <>
       <section class="breadcrumb breadcrumb_bg">
@@ -31,7 +35,29 @@ const Package = () => {
               </div>
             </div>
           </div>
-          <div class="row">
+          <div class="col-lg-4 mb-4">
+            <aside class="single_sidebar_widget search_widget">
+              <form action="#">
+                <div class="form-group">
+                  <div class="input-group mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Search Keyword"
+                      onfocus="this.placeholder = ''"
+                      onblur="this.placeholder = 'Search Keyword'"
+                    />
+                    <div class="input-group-append">
+                      <button class="btn" type="button">
+                        <i class="ti-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </aside>
+          </div>
+          <div class="row" style={{ border: "1px solid white" }}>
             <div class="col-lg-4 col-sm-6">
               <div class="single_ihotel_list">
                 <img src="img/ind/industries_1.png" alt="" />
@@ -211,6 +237,79 @@ const Package = () => {
                 </div>
               </div>
             </div>
+            {beach_data.length > 0 ? (
+              beach_data.map((beach, index) => {
+                return (
+                  <div class="col-lg-4 col-sm-6">
+                    <div class="single_ihotel_list">
+                      <img
+                        style={{ height: "261px", width: "360px" }}
+                        src={beach.avartar_url}
+                        alt=""
+                      />
+                      <div class="hover_text">
+                        <div class="hover_text">
+                          <div class="hotel_social_icon">
+                            <ul>
+                              <li>
+                                <a href="#">
+                                  <i class="ti-facebook"></i>
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <i class="ti-twitter-alt"></i>
+                                </a>
+                              </li>
+                              <li>
+                                <a href="#">
+                                  <i class="ti-linkedin"></i>
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                          <div class="share_icon">
+                            <i class="ti-share"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="hotel_text_iner">
+                        <h3>
+                          {" "}
+                          <a href="#"> {beach.name}</a>
+                        </h3>
+                        <div class="place_review">
+                          <a href="#">
+                            <i class="fas fa-star"></i>
+                          </a>
+                          <a href="#">
+                            <i class="fas fa-star"></i>
+                          </a>
+                          <a href="#">
+                            <i class="fas fa-star"></i>
+                          </a>
+                          <a href="#">
+                            <i class="fas fa-star"></i>
+                          </a>
+                          <a href="#">
+                            <i class="fas fa-star"></i>
+                          </a>
+                          <span>(210 review)</span>
+                        </div>
+                        <p>London, United Kingdom</p>
+                        <p>Date: 23 Aug 2019</p>
+                        <p>Duration: 5 days</p>
+                        <h5>
+                          From <span>$500</span>
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <p>...Loading</p>
+            )}
           </div>
         </div>
       </section>

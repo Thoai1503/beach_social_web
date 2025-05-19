@@ -4,11 +4,14 @@ import "./index.css";
 
 import { RouterProvider } from "react-router-dom";
 import { router } from "./route/Route";
+import { BeachProvider } from "./context/beach_context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <BeachProvider>
+      <RouterProvider router={router} />
+    </BeachProvider>
   </React.StrictMode>
 );
 
