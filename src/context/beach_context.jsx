@@ -15,7 +15,7 @@ export const BeachProvider = ({ children }) => {
       const response = await axiosConfig.get(url);
       dispatch({
         type: "LOAD_BEACH_SUCCESS",
-        payload: paginate(response.data),
+        payload: response.data,
       });
     } catch (error) {
       dispatch({ type: "LOAD_BEACH_FAILURE", payload: error.message });

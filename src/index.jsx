@@ -5,12 +5,15 @@ import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./route/Route";
 import { BeachProvider } from "./context/beach_context";
+import { FilterProvider } from "./context/filter_context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BeachProvider>
-      <RouterProvider router={router} />
+      <FilterProvider>
+        <RouterProvider router={router} />
+      </FilterProvider>
     </BeachProvider>
   </React.StrictMode>
 );
