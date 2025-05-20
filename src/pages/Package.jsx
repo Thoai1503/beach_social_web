@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useBeachContext } from "../context/beach_context";
 
 const Package = () => {
+  const [page, setPage] = useState(0);
   const { beach_data } = useBeachContext();
   console.log("Beach:" + beach_data.length);
+
+  const handlePageChange = (index) => {
+    setPage(index);
+  };
+  const handleNextPage = () => {
+    if (page < beach_data.length - 1) {
+      setPage(page + 1);
+    }
+  };
+  const handlePrevPage = () => {
+    if (page > 0) {
+      setPage(page - 1);
+    }
+  };
+
+  useEffect(() => {
+    document
+      .querySelector("#beach-items")
+      .scrollIntoView({ behavior: "smooth" });
+  }, [page]);
 
   return (
     <>
@@ -57,188 +78,13 @@ const Package = () => {
               </form>
             </aside>
           </div>
-          <div class="row" style={{ border: "1px solid white" }}>
-            <div class="col-lg-4 col-sm-6">
-              <div class="single_ihotel_list">
-                <img src="img/ind/industries_1.png" alt="" />
-                <div class="hover_text">
-                  <div class="hotel_social_icon">
-                    <ul>
-                      <li>
-                        <a href="#">
-                          <i class="ti-facebook"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="ti-twitter-alt"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="ti-linkedin"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="share_icon">
-                    <i class="ti-share"></i>
-                  </div>
-                </div>
-                <div class="hotel_text_iner">
-                  <h3>
-                    {" "}
-                    <a href="#"> Hotel Polonia</a>
-                  </h3>
-                  <div class="place_review">
-                    <a href="#">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <span>(210 review)</span>
-                  </div>
-                  <p>London, United Kingdom</p>
-                  <p>Date: 23 Aug 2019</p>
-                  <p>Duration: 5 days</p>
-                  <h5>
-                    From <span>$500</span>
-                  </h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <div class="single_ihotel_list">
-                <img src="img/ind/industries_2.png" alt="" />
-                <div class="hover_text">
-                  <div class="hotel_social_icon">
-                    <ul>
-                      <li>
-                        <a href="#">
-                          <i class="ti-facebook"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="ti-twitter-alt"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <i class="ti-linkedin"></i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="share_icon">
-                    <i class="ti-share"></i>
-                  </div>
-                </div>
-                <div class="hotel_text_iner">
-                  <h3>
-                    {" "}
-                    <a href="#"> Hotel Polonia</a>
-                  </h3>
-                  <div class="place_review">
-                    <a href="#">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <span>(210 review)</span>
-                  </div>
-                  <p>London, United Kingdom</p>
-                  <p>Date: 23 Aug 2019</p>
-                  <p>Duration: 5 days</p>
-                  <h5>
-                    From <span>$500</span>
-                  </h5>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-              <div class="single_ihotel_list">
-                <img src="img/ind/industries_3.png" alt="" />
-                <div class="hover_text">
-                  <div class="hover_text">
-                    <div class="hotel_social_icon">
-                      <ul>
-                        <li>
-                          <a href="#">
-                            <i class="ti-facebook"></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <i class="ti-twitter-alt"></i>
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            <i class="ti-linkedin"></i>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="share_icon">
-                      <i class="ti-share"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="hotel_text_iner">
-                  <h3>
-                    {" "}
-                    <a href="#"> Hotel Polonia</a>
-                  </h3>
-                  <div class="place_review">
-                    <a href="#">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#">
-                      <i class="fas fa-star"></i>
-                    </a>
-                    <span>(210 review)</span>
-                  </div>
-                  <p>London, United Kingdom</p>
-                  <p>Date: 23 Aug 2019</p>
-                  <p>Duration: 5 days</p>
-                  <h5>
-                    From <span>$500</span>
-                  </h5>
-                </div>
-              </div>
-            </div>
+          <div
+            class="row"
+            id="beach-items"
+            style={{ border: "1px solid white" }}
+          >
             {beach_data.length > 0 ? (
-              beach_data.map((beach, index) => {
+              beach_data[page].map((beach, index) => {
                 return (
                   <div class="col-lg-4 col-sm-6">
                     <div class="single_ihotel_list">
@@ -312,6 +158,46 @@ const Package = () => {
             )}
           </div>
         </div>
+        <nav class="blog-pagination justify-content-center d-flex">
+          <ul class="pagination">
+            <li class="page-item">
+              <button
+                class="page-link"
+                onClick={() => handlePrevPage}
+                aria-label="Previous"
+              >
+                <i class="ti-angle-left"></i>
+              </button>
+            </li>
+
+            {beach_data.length > 0 ? (
+              beach_data.map((beach, index) => {
+                return (
+                  <li class="page-item">
+                    <button
+                      class="page-link"
+                      onClick={() => handlePageChange(index + 1)}
+                    >
+                      {index + 1}
+                    </button>
+                  </li>
+                );
+              })
+            ) : (
+              <p></p>
+            )}
+
+            <li class="page-item">
+              <button
+                class="page-link"
+                onClick={() => handleNextPage}
+                aria-label="Next"
+              >
+                <i class="ti-angle-right"></i>
+              </button>
+            </li>
+          </ul>
+        </nav>
       </section>
 
       <section class="event_part section_padding">
