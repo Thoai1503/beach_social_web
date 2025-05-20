@@ -4,19 +4,25 @@ import paginate from "../pagination";
 
 const Package = () => {
   const {
+    filters,
     filtered_beach,
     searchBeach,
     page,
     handleNextPage,
     handlePageChange,
     handlePrevPage,
+    updateFilters,
   } = useFilterContext();
 
   useEffect(() => {
     document
-      .querySelector("#beach-items")
+      .querySelector(".hotel_list")
       .scrollIntoView({ behavior: "smooth" });
   }, [page]);
+
+  useEffect(() => {
+    console.log("State: " + JSON.stringify(filters));
+  }, [filters]);
 
   return (
     <>
@@ -55,9 +61,15 @@ const Package = () => {
               <select
                 defaultValue={-1}
                 className="form-control"
+                name="nation"
+                onChange={(e) => {
+                  updateFilters(e);
+                }}
                 style={{ maxWidth: "300px" }}
               >
-                <option value={0}>Vui lòng chọn quốc gia</option>
+                <option value={-1}>Vui lòng chọn quốc gia</option>
+                <option value={"Viet Nam"}>Viet Nam</option>
+                <option value={"Germany"}>Germany</option>
               </select>
             </div>
             <div className="col-md-3 d-flex justify-content-end">
@@ -143,7 +155,13 @@ const Package = () => {
                 </div>
               ))
             ) : (
-              <p>...Loading</p>
+              <div
+                class="spinner-border"
+                style={{ marginRight: "400px" }}
+                role="status"
+              >
+                <span class="sr-only">Loading...</span>
+              </div>
             )}
           </div>
 

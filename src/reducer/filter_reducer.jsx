@@ -1,4 +1,4 @@
-import { SEARCH_BEACH } from "../action";
+import { SEARCH_BEACH, UPDATE_FILTERS } from "../action";
 
 const filter_reducer = (state, action) => {
   if (action.type === "GET_BEACH") {
@@ -15,6 +15,10 @@ const filter_reducer = (state, action) => {
         item.name.toLowerCase().includes(action.payload)
       ),
     };
+  }
+  if (action.type === UPDATE_FILTERS) {
+    const { name, value } = action.payload;
+    return { ...state, filters: { ...state.filters, [name]: value } };
   }
 
   throw new Error(`No Matching "${action.type}" - action type`);

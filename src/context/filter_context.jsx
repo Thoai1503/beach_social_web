@@ -8,7 +8,6 @@ import paginate from "../pagination";
 const FilterContext = React.createContext();
 
 export const FilterProvider = ({ children }) => {
-  //const [state, setState] = React.useState(beach_state);
   const [page, setPage] = useState(0);
   const [state, dispatch] = useReducer(filter_reducer, filter_state);
   const { beach_data } = useBeachContext();
@@ -28,6 +27,23 @@ export const FilterProvider = ({ children }) => {
     if (page > 0) {
       setPage(page - 1);
     }
+  };
+  const updateFilters = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
+    console.log(value, name);
+    if (name === "nation") {
+      value = e.target.value;
+    }
+    if (name === "continent") {
+      value = e.target.target.value;
+    }
+
+    dispatch({ type: "UPDATE_FILTERS", payload: { name, value } });
+  };
+
+  const clearFilters = () => {
+    dispatch({ type: "CLEAR_FILTERS" });
   };
 
   const getBeach = (beach) => {
@@ -52,6 +68,7 @@ export const FilterProvider = ({ children }) => {
         handleNextPage,
         handlePageChange,
         handlePrevPage,
+        updateFilters,
         page,
       }}
     >

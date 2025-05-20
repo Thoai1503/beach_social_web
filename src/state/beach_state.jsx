@@ -3,6 +3,8 @@ import React from "react";
 const beach_state = {
   beach_loading: false,
   beach_data: [],
+  nation: [],
+  continent: [],
   beach_error: false,
   single_beach: {},
   single_beach_loading: false,
