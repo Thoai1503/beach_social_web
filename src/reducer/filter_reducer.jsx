@@ -1,4 +1,4 @@
-import { SEARCH_BEACH, UPDATE_FILTERS } from "../action";
+import { SEARCH_BEACH, UPDATE_FILTERS, FILTER_BEACH } from "../action";
 
 const filter_reducer = (state, action) => {
   if (action.type === "GET_BEACH") {
@@ -19,6 +19,15 @@ const filter_reducer = (state, action) => {
   if (action.type === UPDATE_FILTERS) {
     const { name, value } = action.payload;
     return { ...state, filters: { ...state.filters, [name]: value } };
+  }
+  if (action.type === FILTER_BEACH) {
+    const { beach_data } = state;
+    const { nation, continent } = state.filters;
+    let tempBeaches = [...beach_data];
+    if (nation !== "all") {
+      tempBeaches = tempBeaches.filter((item) => item.nationid === nation);
+    }
+    return { ...state, filtered_beach: tempBeaches };
   }
 
   throw new Error(`No Matching "${action.type}" - action type`);

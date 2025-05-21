@@ -74,11 +74,11 @@ const Package = () => {
                 }}
                 style={{ maxWidth: "300px" }}
               >
-                <option value={-1}>Vui lòng chọn quốc gia</option>
+                <option value={"all"}>Vui lòng chọn quốc gia</option>
 
                 {nation.length > 0 ? (
                   nation.map((item) => {
-                    return <option value={item.name}>{item.name}</option>;
+                    return <option value={item.id}>{item.name}</option>;
                   })
                 ) : (
                   <option value={"Viet Nam"}>Viet Nam</option>

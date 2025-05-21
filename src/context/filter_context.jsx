@@ -33,7 +33,7 @@ export const FilterProvider = ({ children }) => {
     let value = e.target.value;
     console.log(value, name);
     if (name === "nation") {
-      value = e.target.value;
+      value = Number(e.target.value);
     }
     if (name === "continent") {
       value = e.target.target.value;
@@ -60,6 +60,11 @@ export const FilterProvider = ({ children }) => {
   useEffect(() => {
     getBeach(beach_data);
   }, [beach_data]);
+
+  useEffect(() => {
+    setPage(0);
+    dispatch({ type: "FILTER_BEACH" });
+  }, [state.filters]);
   return (
     <FilterContext.Provider
       value={{
