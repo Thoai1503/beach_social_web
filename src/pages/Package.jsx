@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useFilterContext } from "../context/filter_context";
 import paginate from "../pagination";
+import { useBeachContext } from "../context/beach_context";
 
 const Package = () => {
   const {
@@ -14,6 +15,7 @@ const Package = () => {
     updateFilters,
   } = useFilterContext();
 
+  const { nation, beach_loading } = useBeachContext();
   useEffect(() => {
     document
       .querySelector(".hotel_list")
@@ -23,6 +25,10 @@ const Package = () => {
   useEffect(() => {
     console.log("State: " + JSON.stringify(filters));
   }, [filters]);
+
+  useEffect(() => {
+    console.log("Beach state: " + JSON.stringify(nation));
+  }, []);
 
   return (
     <>
@@ -45,6 +51,7 @@ const Package = () => {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-xl-6">
+              {nation.length > 0 ? <p>{nation[1].name}</p> : <p></p>}
               <div className="section_tittle text-center">
                 <h2>Top Hotel & Restaurants</h2>
                 <p>
@@ -68,8 +75,14 @@ const Package = () => {
                 style={{ maxWidth: "300px" }}
               >
                 <option value={-1}>Vui lòng chọn quốc gia</option>
-                <option value={"Viet Nam"}>Viet Nam</option>
-                <option value={"Germany"}>Germany</option>
+
+                {nation.length > 0 ? (
+                  nation.map((item) => {
+                    return <option value={item.name}>{item.name}</option>;
+                  })
+                ) : (
+                  <option value={"Viet Nam"}>Viet Nam</option>
+                )}
               </select>
             </div>
             <div className="col-md-3 d-flex justify-content-end">

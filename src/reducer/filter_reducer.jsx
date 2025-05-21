@@ -12,7 +12,7 @@ const filter_reducer = (state, action) => {
     return {
       ...state,
       filtered_beach: state.beach_data.filter((item) =>
-        item.name.toLowerCase().includes(action.payload)
+        item.name.toLowerCase().includes(action.payload.toLowerCase())
       ),
     };
   }

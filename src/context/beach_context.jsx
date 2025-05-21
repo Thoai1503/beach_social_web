@@ -9,20 +9,22 @@ const BeachContext = React.createContext();
 export const BeachProvider = ({ children }) => {
   const [state, dispatch] = useReducer(beach_reducer, beach_state);
 
-  const loadBeach = async (url) => {
+  const loadBeach = async (url, nation_url) => {
     dispatch({ type: "LOAD_BEACH" });
     try {
       const response = await axiosConfig.get(url);
+      const nationRespone = await axiosConfig.get(nation_url);
       dispatch({
         type: "LOAD_BEACH_SUCCESS",
-        payload: response.data,
+        payload: { beach: response.data, nation: nationRespone.data },
       });
     } catch (error) {
       dispatch({ type: "LOAD_BEACH_FAILURE", payload: error.message });
     }
   };
+
   useEffect(() => {
-    loadBeach("/api/beach");
+    loadBeach("/api/beach", "/api/nations");
   }, []);
 
   return (

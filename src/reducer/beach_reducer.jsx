@@ -8,8 +8,9 @@ const beach_reducer = (state, action) => {
     return {
       ...state,
       beach_loading: false,
-      beach_data: action.payload,
-      filter_beach: action.payload,
+      nation: action.payload.nation,
+      beach_data: action.payload.beach,
+      filter_beach: action.payload.beach,
     };
   }
   if (action.type === LOAD_BEACH_FAILURE) {
