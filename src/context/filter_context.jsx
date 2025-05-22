@@ -69,6 +69,7 @@ export const FilterProvider = ({ children }) => {
     <FilterContext.Provider
       value={{
         ...state,
+        clearFilters,
         searchBeach,
         handleNextPage,
         handlePageChange,

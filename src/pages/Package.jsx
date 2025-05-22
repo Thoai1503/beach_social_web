@@ -13,6 +13,7 @@ const Package = () => {
     handlePageChange,
     handlePrevPage,
     updateFilters,
+    clearFilters,
   } = useFilterContext();
 
   const { nation, beach_loading } = useBeachContext();
@@ -86,22 +87,30 @@ const Package = () => {
               </select>
             </div>
             <div className="col-md-3 d-flex justify-content-end">
-              <div className="input-group" style={{ maxWidth: "300px" }}>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Search Keyword"
-                  onChange={(e) => {
-                    searchBeach(e);
-                  }}
-                  onFocus={(e) => (e.target.placeholder = "")}
-                  onBlur={(e) => (e.target.placeholder = "Search Keyword")}
-                />
-                <div className="input-group-append">
-                  <button className="btn" type="button">
-                    <i className="ti-search"></i>
-                  </button>
+              <div className="d-flex gap-2" style={{ maxWidth: "100%" }}>
+                <div className="input-group" style={{ maxWidth: "300px" }}>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search Keyword"
+                    onChange={(e) => {
+                      searchBeach(e);
+                    }}
+                    onFocus={(e) => (e.target.placeholder = "")}
+                    onBlur={(e) => (e.target.placeholder = "Search Keyword")}
+                  />
+                  <div className="input-group-append">
+                    <button className="btn" type="button">
+                      <i className="ti-search"></i>
+                    </button>
+                  </div>
                 </div>
+                <button
+                  className="btn btn-outline-secondary"
+                  onClick={() => clearFilters()}
+                >
+                  Clear
+                </button>
               </div>
             </div>
           </div>
@@ -168,13 +177,16 @@ const Package = () => {
                 </div>
               ))
             ) : (
-              <div
-                class="spinner-border"
-                style={{ marginRight: "400px" }}
-                role="status"
-              >
-                <span class="sr-only">Loading...</span>
-              </div>
+              <>
+                <div
+                  class="spinner-border"
+                  style={{ marginRight: "400px" }}
+                  role="status"
+                >
+                  <span class="sr-only">Loading...</span>
+                </div>
+                <p class="">Waiting a few seconds...</p>
+              </>
             )}
           </div>
 

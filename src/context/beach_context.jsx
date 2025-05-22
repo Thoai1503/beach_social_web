@@ -22,6 +22,19 @@ export const BeachProvider = ({ children }) => {
       dispatch({ type: "LOAD_BEACH_FAILURE", payload: error.message });
     }
   };
+  const loadSingleBeach = async (url) => {
+    dispatch({ type: "LOAD_SINGLE_BEACH" });
+    try {
+      const response = await axiosConfig.get(url);
+
+      dispatch({
+        type: "LOAD_SINGLE_BEACH_SUCCESS",
+        payload: { beach: response.data },
+      });
+    } catch (error) {
+      dispatch({ type: "LOAD_BEACH_FAILURE", payload: error.message });
+    }
+  };
 
   useEffect(() => {
     loadBeach("/api/beach", "/api/nations");
