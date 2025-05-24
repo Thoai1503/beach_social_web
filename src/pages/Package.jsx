@@ -156,7 +156,7 @@ const Package = () => {
                     </div>
                     <div className="hotel_text_iner">
                       <h3>
-                        <a href="#"> {beach.name}</a>
+                        <a href={`singlebeach/${beach.id}`}> {beach.name}</a>
                       </h3>
                       <div className="place_review">
                         {[...Array(5)].map((_, i) => (

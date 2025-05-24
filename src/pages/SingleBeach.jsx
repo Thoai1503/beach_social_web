@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
+import { useBeachContext } from "../context/beach_context";
 
 const SingleBeach = () => {
   const { id } = useParams();
+  const { loadSingleBeach, single_beach } = useBeachContext();
+
+  useEffect(() => {
+    loadSingleBeach(`/api/beach/${id}`);
+    console.log("Beach :" + single_beach);
+  }, [id]);
+
   return (
     <>
       <section className="breadcrumb breadcrumb_bg">
         <div className="container">
+          {single_beach ? <p>{single_beach.name}</p> : <p>no</p>}
           <div className="row">
             <div className="col-lg-12">
               <div className="breadcrumb_iner">
@@ -31,21 +40,21 @@ const SingleBeach = () => {
             <div class="carousel-item active">
               <img
                 class="d-block w-100"
-                src="http://localhost:3000/img/blog/single_blog_1.png"
+                src="http://localhost:4000/img/blog/single_blog_1.png"
                 alt="First slide"
               />
             </div>
             <div class="carousel-item">
               <img
                 class="d-block w-100"
-                src="http://localhost:3000/img/blog/single_blog_2.png"
+                src="http://localhost:4000/img/blog/single_blog_2.png"
                 alt="Second slide"
               />
             </div>
             <div class="carousel-item">
               <img
                 class="d-block w-100"
-                src="http://localhost:3000/img/blog/single_blog_3.png"
+                src="http://localhost:4000/img/blog/single_blog_3.png"
                 alt="Third slide"
               />
             </div>

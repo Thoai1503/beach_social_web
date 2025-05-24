@@ -32,7 +32,7 @@ export const BeachProvider = ({ children }) => {
         payload: { beach: response.data },
       });
     } catch (error) {
-      dispatch({ type: "LOAD_BEACH_FAILURE", payload: error.message });
+      dispatch({ type: "LOAD_SINGLE_BEACH_FAILURE", payload: error.message });
     }
   };
 
@@ -45,6 +45,7 @@ export const BeachProvider = ({ children }) => {
       value={{
         ...state,
         loadBeach,
+        loadSingleBeach,
       }}
     >
       {children}
